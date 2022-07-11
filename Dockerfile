@@ -14,3 +14,4 @@ USER 1000
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 COPY . .
 EXPOSE 3000
+CMD ["code-server", "serve-local", "--host", "0.0.0.0", "--port", "3000", "--accept-server-license-terms", "--without-connection-token"]
