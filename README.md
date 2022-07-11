@@ -5,13 +5,14 @@ debian bullseye based.
 ## docker build and run
 
 ```bash
-git clone https://github.com/jobscale/node-aws.git
-cd node-aws
+git clone https://github.com/jobscale/code-server.git
+cd code-server
 
-docker build . -t local/node-aws \
- && docker run --name node-aws -it local/node-aws bash
+docker build . -f dind/Dockerfile -t local/code-server:dind
+docker run --name code-server --privileged -it local/code-server:dind bash
 
-docker start node-aws && docker exec -it node-aws bash
+docker start code-server
+docker exec -it code-server bash
 ```
 
 ## Docker in Docker
@@ -19,7 +20,7 @@ docker start node-aws && docker exec -it node-aws bash
 ### run dind
 
 ```
-docker run --privileged --restart always --name dind -it ghcr.io/jobscale/node-aws:dind bash
+docker run --privileged --restart always --name dind -it ghcr.io/jobscale/code-server:dind bash
 ```
 
 ### test dind
