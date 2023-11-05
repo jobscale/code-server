@@ -1,8 +1,8 @@
-FROM node:lts-bullseye
+FROM node:lts-bookworm
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales git unzip vim curl iproute2 dnsutils netcat less python3-pip sudo
+RUN apt-get update && apt-get install -y locales git unzip vim curl iproute2 dnsutils netcat-openbsd less python3-pip sudo
 RUN curl -sL git.io/susi | bash && usermod -aG docker node
 RUN curl -sL https://aka.ms/install-vscode-server/setup.sh | bash
 RUN rm -fr /var/lib/apt/lists/*
