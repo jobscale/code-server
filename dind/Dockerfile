@@ -17,4 +17,4 @@ COPY . .
 VOLUME /var/lib/docker
 RUN echo -e "su - node\nexit" >> /root/.bashrc
 EXPOSE 3000
-CMD ["code-server", "serve-local", "--host", "0.0.0.0", "--port", "3000", "--without-connection-token"]
+CMD ["code-server", "serve-local", "--host", "0.0.0.0", "--port", "3000"]
