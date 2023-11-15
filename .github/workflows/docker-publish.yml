@@ -59,6 +59,7 @@ jobs:
             type=raw,value=latest
             type=ref,event=tag
             type=ref,event=branch
+            v${{ github.run_number }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
