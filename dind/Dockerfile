@@ -13,7 +13,8 @@ RUN npm i -g npm && npm version
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
-COPY . .
+COPY --chown=node:staff config.yaml .config/code-server/config.yaml
+COPY --chown=node:staff README.md .
 VOLUME /var/lib/docker
 RUN echo -e "su - node\nexit" >> /root/.bashrc
 EXPOSE 3000

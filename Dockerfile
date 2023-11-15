@@ -13,6 +13,7 @@ RUN npm i -g npm && npm version
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 USER node
 RUN echo 'PATH="$PATH:~/.local/bin"' >> /home/node/.bashrc
-COPY . .
+COPY --chown=node:staff config.yaml .config/code-server/config.yaml
+COPY --chown=node:staff README.md .
 EXPOSE 3000
 CMD ["code-server", "serve-local", "--host", "0.0.0.0", "--port", "3000"]
