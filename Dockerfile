@@ -3,6 +3,7 @@ SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y locales git unzip vim curl iproute2 dnsutils netcat-openbsd less python3-pip sudo
+
 RUN curl -fsSL https://code-server.dev/install.sh | bash
 RUN rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
