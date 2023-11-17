@@ -5,7 +5,7 @@ debian bookworm based.
 ## docker build and run
 
 ```bash
-git clone https://github.com/jobscale/code-server.git
+git clone git@github.com:jobscale/code-server.git
 cd code-server
 
 docker build . -f dind/Dockerfile -t local/code-server:dind
