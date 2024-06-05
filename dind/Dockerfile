@@ -1,4 +1,4 @@
-FROM node:lts-bookworm
+FROM node:lts-bookworm-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,7 +14,7 @@ RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && loca
 RUN npm i -g npm@latest && npm version | xargs
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
+RUN echo 'PATH="$PATH:~/.local/bin"' >> /home/node/.bashrc
 COPY --chown=node:staff config.yaml .config/code-server/config.yaml
 COPY --chown=node:staff README.md .
 VOLUME /var/lib/docker
