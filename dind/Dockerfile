@@ -1,13 +1,13 @@
 FROM node:lts-bookworm-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales git unzip vim curl \
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends locales git unzip vim curl \
   iproute2 dnsutils netcat-openbsd less python3-pip sudo \
- && rm -fr /var/lib/apt/lists/*
+ && apt-get clean && rm -fr /var/lib/apt/lists/*
 RUN curl -sL jsx.jp/s/docker | bash && usermod -aG docker node
 RUN curl -fsSL https://code-server.dev/install.sh | bash \
- && rm -fr /var/lib/apt/lists/*
+ && apt-get clean && rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
 RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && update-locale LANG=ja_JP.UTF-8 \
  && echo -e "export LANG=ja_JP.UTF-8\nexport TZ=Asia/Tokyo\numask u=rwx,g=rx,o=rx" | tee -a /etc/bash.bashrc
